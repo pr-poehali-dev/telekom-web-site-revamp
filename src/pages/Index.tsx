@@ -38,32 +38,9 @@ interface Promotion {
 }
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('internet');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const tariffs: Tariff[] = [
-    {
-      name: 'Базовый',
-      speed: 100,
-      price: 1000,
-      type: 'internet',
-      features: ['Технология GPON', 'Подключение 2-3 дня', 'Круглосуточная поддержка', 'Стабильная скорость'],
-    },
-    {
-      name: 'Оптимальный',
-      speed: 200,
-      price: 1200,
-      type: 'internet',
-      features: ['Технология GPON', 'Подключение 2-3 дня', 'Круглосуточная поддержка', 'Приоритетный трафик'],
-      popular: true,
-    },
-    {
-      name: 'Максимум',
-      speed: 500,
-      price: 1500,
-      type: 'internet',
-      features: ['Технология GPON', 'Подключение 2-3 дня', 'Премиум поддержка 24/7', 'Безлимитный трафик'],
-    },
     {
       name: 'Комбо 100',
       speed: 100,
@@ -229,8 +206,6 @@ const Index = () => {
       <HeroSection onConnectClick={scrollToTariffs} />
 
       <TariffsSection
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
         tariffs={tariffs}
         tvPackages={tvPackages}
       />
