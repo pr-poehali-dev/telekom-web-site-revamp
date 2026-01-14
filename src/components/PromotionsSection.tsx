@@ -25,7 +25,7 @@ const PromotionsSection = ({ promotions, selectedCategory, onCategoryChange }: P
     <section id="promotions" className="py-20 px-4 bg-muted/30">
       <div className="container mx-auto">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Акции и спецпредложения</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Акции</h2>
           <p className="text-xl text-muted-foreground">Выгодные предложения для вас</p>
         </div>
 
