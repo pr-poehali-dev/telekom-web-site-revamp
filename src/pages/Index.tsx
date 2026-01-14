@@ -238,11 +238,13 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-yellow-500 rounded-lg flex items-center justify-center">
-                  <Icon name="Wifi" className="text-background" size={24} />
-                </div>
-                <span className="text-xl font-bold gradient-text">VikomTel</span>
+              <div className="flex items-center gap-3">
+                <img 
+                  src="https://cdn.poehali.dev/files/Дельфин копия1.png" 
+                  alt="ООО Виком" 
+                  className="h-12 w-auto object-contain"
+                />
+                <span className="text-xl font-bold gradient-text">ООО Виком</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Надежный интернет-провайдер с 2010 года
@@ -308,7 +310,7 @@ const Index = () => {
           </div>
 
           <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            © 2026 VikomTel. Все права защищены.
+            © 2026 ООО Виком. Все права защищены.
           </div>
         </div>
       </footer>
