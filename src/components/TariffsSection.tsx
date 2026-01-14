@@ -153,34 +153,36 @@ const TariffsSection = ({ activeTab, onTabChange, tariffs, tvPackages }: Tariffs
             <p className="text-xl text-muted-foreground">Премиальное телевидение для всей семьи</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tvPackages.map((pkg, index) => (
               <Card
                 key={pkg.name}
                 className={`card-3d animate-slide-up ${pkg.premium ? 'border-secondary glow-effect' : ''}`}
-                style={{ animationDelay: `${index * 0.15}s` }}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-2xl">{pkg.name}</CardTitle>
+                    <CardTitle className="text-xl">{pkg.name}</CardTitle>
                     {pkg.hd && (
-                      <Badge variant="secondary" className="ml-2">
-                        HD/4K
+                      <Badge variant="secondary" className="ml-2 shrink-0">
+                        HD
                       </Badge>
                     )}
                   </div>
-                  <CardDescription>{pkg.channels}+ каналов</CardDescription>
+                  {pkg.channels > 0 && (
+                    <CardDescription>{pkg.channels}+ каналов</CardDescription>
+                  )}
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3">
                   <div>
-                    <span className="text-5xl font-bold gradient-text">{pkg.price}</span>
+                    <span className="text-4xl font-bold gradient-text">{pkg.price}</span>
                     <span className="text-muted-foreground ml-2">₽/мес</span>
                   </div>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {pkg.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2">
-                        <Icon name="Check" className="text-secondary mt-1 flex-shrink-0" size={18} />
-                        <span className="text-sm">{feature}</span>
+                        <Icon name="Check" className="text-secondary mt-0.5 flex-shrink-0" size={16} />
+                        <span className="text-xs">{feature}</span>
                       </li>
                     ))}
                   </ul>
