@@ -264,8 +264,11 @@ const Index = () => {
                   </div>
                   <div>
                     <div className="font-semibold">Телефон</div>
-                    <a href="tel:+79135474823" className="text-primary hover:underline">
+                    <a href="tel:+79135474823" className="text-primary hover:underline block">
                       +7 (913) 547-48-23
+                    </a>
+                    <a href="tel:83904430434" className="text-primary hover:underline block">
+                      8 (39044) 3-04-34
                     </a>
                   </div>
                 </div>
@@ -276,8 +279,8 @@ const Index = () => {
                   </div>
                   <div>
                     <div className="font-semibold">Email</div>
-                    <a href="mailto:info@vikomtel.ru" className="text-primary hover:underline">
-                      info@vikomtel.ru
+                    <a href="mailto:office@vikomtel.ru" className="text-primary hover:underline">
+                      office@vikomtel.ru
                     </a>
                   </div>
                 </div>
@@ -288,7 +291,7 @@ const Index = () => {
                   </div>
                   <div>
                     <div className="font-semibold">Адрес</div>
-                    <div className="text-muted-foreground">г. Москва, ул. Примерная, д. 123</div>
+                    <div className="text-muted-foreground">655770, Республика Хакасия, Бейский район, с. Бея, ул. Горького, 1Б</div>
                   </div>
                 </div>
               </div>
