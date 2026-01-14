@@ -188,8 +188,14 @@ const TariffsSection = ({ activeTab, onTabChange, tariffs, tvPackages }: Tariffs
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full" variant={pkg.premium ? 'default' : 'outline'}>
-                    Подключить пакет
+                  <Button 
+                    className="w-full" 
+                    variant={pkg.premium ? 'default' : 'outline'}
+                    asChild
+                  >
+                    <a href="https://24h.tv/provider/vikom" target="_blank" rel="noopener noreferrer">
+                      Подключить пакет
+                    </a>
                   </Button>
                 </CardFooter>
               </Card>
