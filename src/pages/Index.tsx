@@ -268,18 +268,23 @@ const Index = () => {
                 <CardDescription>Мы свяжемся с вами в ближайшее время</CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form 
+                  className="space-y-4"
+                  action="mailto:vikom-h@mail.ru"
+                  method="POST"
+                  encType="text/plain"
+                >
                   <div>
-                    <Input placeholder="Ваше имя" />
+                    <Input placeholder="Ваше имя" name="name" />
                   </div>
                   <div>
-                    <Input type="tel" placeholder="Телефон" />
+                    <Input type="tel" placeholder="Телефон" name="phone" />
                   </div>
                   <div>
-                    <Input type="email" placeholder="Email" />
+                    <Input type="email" placeholder="Email" name="email" />
                   </div>
                   <div>
-                    <Textarea placeholder="Ваш вопрос или комментарий" rows={4} />
+                    <Textarea placeholder="Ваш вопрос или комментарий" rows={4} name="message" />
                   </div>
                   <Button type="submit" className="w-full">
                     Отправить заявку
