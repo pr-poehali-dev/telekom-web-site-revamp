@@ -7,7 +7,7 @@ import Icon from '@/components/ui/icon';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import TariffsSection from '@/components/TariffsSection';
-import PromotionsSection from '@/components/PromotionsSection';
+import ServicesSection from '@/components/ServicesSection';
 
 interface Tariff {
   name: string;
@@ -29,16 +29,14 @@ interface TVPackage {
   premium?: boolean;
 }
 
-interface Promotion {
+interface Service {
   title: string;
   description: string;
-  discount: string;
-  validUntil: string;
-  category: 'internet' | 'tv' | 'combo';
+  icon: string;
+  features: string[];
 }
 
 const Index = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -203,27 +201,72 @@ const Index = () => {
     },
   ];
 
-  const promotions: Promotion[] = [
+  const services: Service[] = [
     {
-      title: 'Новогодняя акция',
-      description: 'Подключи интернет 500 Мбит/с и получи первый месяц бесплатно',
-      discount: '-100%',
-      validUntil: '31.01.2026',
-      category: 'internet',
+      title: 'Техническая поддержка 24/7',
+      description: 'Круглосуточная помощь нашим клиентам',
+      icon: 'Headphones',
+      features: [
+        'Консультации по подключению',
+        'Решение технических проблем',
+        'Настройка оборудования',
+        'Удаленная диагностика'
+      ],
     },
     {
-      title: 'ТВ в подарок',
-      description: 'При подключении любого тарифа - пакет ТВ "Лайт+" на 3 месяца бесплатно',
-      discount: 'Бесплатно 3 мес.',
-      validUntil: '15.02.2026',
-      category: 'combo',
+      title: 'Настройка оборудования',
+      description: 'Профессиональная установка и настройка',
+      icon: 'Settings',
+      features: [
+        'Установка роутеров',
+        'Настройка Wi-Fi сети',
+        'Подключение ТВ-приставок',
+        'Оптимизация сигнала'
+      ],
     },
     {
-      title: 'Спортивный пакет',
-      description: 'Скидка 50% на спортивные каналы при подключении пакета "Премиум"',
-      discount: '-50%',
-      validUntil: '28.02.2026',
-      category: 'tv',
+      title: 'Личный кабинет',
+      description: 'Управление услугами онлайн',
+      icon: 'User',
+      features: [
+        'Пополнение баланса',
+        'Смена тарифа',
+        'История платежей',
+        'Статистика использования'
+      ],
+    },
+    {
+      title: 'Видеонаблюдение',
+      description: 'Безопасность вашего дома',
+      icon: 'Video',
+      features: [
+        'Установка камер',
+        'Облачное хранилище',
+        'Просмотр с телефона',
+        'Архив записей до 30 дней'
+      ],
+    },
+    {
+      title: 'Защита от киберугроз',
+      description: 'Безопасность в интернете',
+      icon: 'Shield',
+      features: [
+        'Антивирусная защита',
+        'Родительский контроль',
+        'Блокировка рекламы',
+        'Безопасный DNS'
+      ],
+    },
+    {
+      title: 'Подключение организаций',
+      description: 'Решения для бизнеса',
+      icon: 'Building',
+      features: [
+        'Выделенные каналы',
+        'Статический IP-адрес',
+        'VPN для сотрудников',
+        'Приоритетная поддержка'
+      ],
     },
   ];
 
@@ -242,11 +285,7 @@ const Index = () => {
         tvPackages={tvPackages}
       />
 
-      <PromotionsSection
-        promotions={promotions}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-      />
+      <ServicesSection services={services} />
 
       <section id="contacts" className="py-20 px-4">
         <div className="container mx-auto">
@@ -392,8 +431,8 @@ const Index = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#promotions" className="hover:text-primary transition-colors">
-                    Акции
+                  <a href="#services" className="hover:text-primary transition-colors">
+                    Сервисы
                   </a>
                 </li>
               </ul>

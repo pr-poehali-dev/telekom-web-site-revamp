@@ -40,8 +40,8 @@ const Navigation = ({ onConnectClick }: NavigationProps) => {
             <a href="#tv" className="text-foreground/80 hover:text-primary transition-colors">
               Телевидение
             </a>
-            <a href="#promotions" className="text-foreground/80 hover:text-primary transition-colors">
-              Акции
+            <a href="#services" className="text-foreground/80 hover:text-primary transition-colors">
+              Сервисы
             </a>
             <a href="#contacts" className="text-foreground/80 hover:text-primary transition-colors">
               Контакты
@@ -95,11 +95,11 @@ const Navigation = ({ onConnectClick }: NavigationProps) => {
                 Телевидение
               </a>
               <a
-                href="#promotions"
+                href="#services"
                 onClick={handleLinkClick}
                 className="block text-foreground/80 hover:text-primary transition-colors py-2"
               >
-                Акции
+                Сервисы
               </a>
               <a
                 href="#contacts"
