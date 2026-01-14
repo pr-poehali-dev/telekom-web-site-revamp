@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
+import Navigation from '@/components/Navigation';
+import HeroSection from '@/components/HeroSection';
+import TariffsSection from '@/components/TariffsSection';
+import PromotionsSection from '@/components/PromotionsSection';
 
 interface Tariff {
   name: string;
@@ -134,339 +136,28 @@ const Index = () => {
     },
   ];
 
-  const filteredPromotions = selectedCategory === 'all' 
-    ? promotions 
-    : promotions.filter(p => p.category === selectedCategory);
-
   const scrollToTariffs = () => {
     document.getElementById('tariffs')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-yellow-500 rounded-lg flex items-center justify-center">
-                <Icon name="Wifi" className="text-background" size={24} />
-              </div>
-              <span className="text-2xl font-bold gradient-text">VikomTel</span>
-            </div>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#tariffs" className="text-foreground/80 hover:text-primary transition-colors">
-                Тарифы
-              </a>
-              <a href="#tv" className="text-foreground/80 hover:text-primary transition-colors">
-                Телевидение
-              </a>
-              <a href="#promotions" className="text-foreground/80 hover:text-primary transition-colors">
-                Акции
-              </a>
-              <a href="#contacts" className="text-foreground/80 hover:text-primary transition-colors">
-                Контакты
-              </a>
-              <a
-                href="http://stat.vikomtel.ru"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground/80 hover:text-primary transition-colors"
-              >
-                Личный кабинет
-              </a>
-            </div>
-            <Button onClick={scrollToTariffs} className="glow-effect">
-              Подключить
-            </Button>
-          </div>
-        </div>
-      </nav>
+      <Navigation onConnectClick={scrollToTariffs} />
 
-      <section className="pt-32 pb-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in">
-              <Badge className="bg-primary/20 text-primary border-primary">Лучший выбор 2026</Badge>
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                Высокая скорость.
-                <br />
-                <span className="gradient-text">Доступные цены.</span>
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Надежное подключение к интернету на базе технологии GPON. Подключаем за 2-3 рабочих дня.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" onClick={scrollToTariffs} className="text-lg glow-effect">
-                  <Icon name="Zap" className="mr-2" size={20} />
-                  Выбрать тариф
-                </Button>
-                <Button size="lg" variant="outline">
-                  <Icon name="PhoneCall" className="mr-2" size={20} />
-                  Узнать подробнее
-                </Button>
-              </div>
-              <div className="grid grid-cols-3 gap-6 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">99.9%</div>
-                  <div className="text-sm text-muted-foreground">Аптайм</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">24/7</div>
-                  <div className="text-sm text-muted-foreground">Поддержка</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">15k+</div>
-                  <div className="text-sm text-muted-foreground">Клиентов</div>
-                </div>
-              </div>
-            </div>
-            <div className="relative animate-scale-in">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 blur-3xl rounded-full"></div>
-              <div className="relative bg-card/50 backdrop-blur-sm border border-border rounded-3xl p-8 card-3d">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4 p-4 bg-primary/10 rounded-xl">
-                    <Icon name="Rocket" className="text-primary" size={32} />
-                    <div>
-                      <div className="font-semibold">Быстрое подключение</div>
-                      <div className="text-sm text-muted-foreground">Всего 2-3 рабочих дня</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 p-4 bg-secondary/10 rounded-xl">
-                    <Icon name="Shield" className="text-secondary" size={32} />
-                    <div>
-                      <div className="font-semibold">Надежная защита</div>
-                      <div className="text-sm text-muted-foreground">Технология GPON</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 p-4 bg-primary/10 rounded-xl">
-                    <Icon name="Headphones" className="text-primary" size={32} />
-                    <div>
-                      <div className="font-semibold">Поддержка 24/7</div>
-                      <div className="text-sm text-muted-foreground">Всегда на связи</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection onConnectClick={scrollToTariffs} />
 
-      <section id="tariffs" className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Тарифные планы</h2>
-            <p className="text-xl text-muted-foreground">Выберите оптимальный тариф для себя</p>
-          </div>
+      <TariffsSection
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        tariffs={tariffs}
+        tvPackages={tvPackages}
+      />
 
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
-              <TabsTrigger value="internet">Интернет</TabsTrigger>
-              <TabsTrigger value="combo">Интернет + ТВ</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="internet" className="space-y-8">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {tariffs
-                  .filter((t) => t.type === 'internet')
-                  .map((tariff, index) => (
-                    <Card
-                      key={tariff.name}
-                      className={`relative card-3d animate-slide-up ${
-                        tariff.popular ? 'border-primary glow-effect' : ''
-                      }`}
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      {tariff.popular && (
-                        <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-background">
-                          Популярный
-                        </Badge>
-                      )}
-                      <CardHeader>
-                        <CardTitle className="text-2xl">{tariff.name}</CardTitle>
-                        <CardDescription>Скорость до {tariff.speed} Мбит/с</CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <div>
-                          <span className="text-5xl font-bold gradient-text">{tariff.price}</span>
-                          <span className="text-muted-foreground ml-2">₽/мес</span>
-                        </div>
-                        <ul className="space-y-2">
-                          {tariff.features.map((feature) => (
-                            <li key={feature} className="flex items-start gap-2">
-                              <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={18} />
-                              <span className="text-sm">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button className="w-full" variant={tariff.popular ? 'default' : 'outline'}>
-                          Выбрать тариф
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="combo" className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                {tariffs
-                  .filter((t) => t.type === 'combo')
-                  .map((tariff, index) => (
-                    <Card
-                      key={tariff.name}
-                      className={`relative card-3d animate-slide-up ${
-                        tariff.popular ? 'border-primary glow-effect' : ''
-                      }`}
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      {tariff.popular && (
-                        <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-background">
-                          Популярный
-                        </Badge>
-                      )}
-                      <CardHeader>
-                        <CardTitle className="text-2xl">{tariff.name}</CardTitle>
-                        <CardDescription>
-                          {tariff.speed} Мбит/с + {tariff.tvPackage}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <div>
-                          <span className="text-5xl font-bold gradient-text">{tariff.price}</span>
-                          <span className="text-muted-foreground ml-2">₽/мес</span>
-                        </div>
-                        <div className="flex items-center gap-2 p-3 bg-secondary/10 rounded-lg">
-                          <Icon name="Tv" className="text-secondary" size={24} />
-                          <span className="font-semibold">{tariff.tvChannels}+ каналов</span>
-                        </div>
-                        <ul className="space-y-2">
-                          {tariff.features.map((feature) => (
-                            <li key={feature} className="flex items-start gap-2">
-                              <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={18} />
-                              <span className="text-sm">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button className="w-full" variant={tariff.popular ? 'default' : 'outline'}>
-                          Выбрать тариф
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  ))}
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-
-      <section id="tv" className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">ТВ-пакеты</h2>
-            <p className="text-xl text-muted-foreground">Премиальное телевидение для всей семьи</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {tvPackages.map((pkg, index) => (
-              <Card
-                key={pkg.name}
-                className={`card-3d animate-slide-up ${pkg.premium ? 'border-secondary glow-effect' : ''}`}
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-2xl">{pkg.name}</CardTitle>
-                    {pkg.hd && (
-                      <Badge variant="secondary" className="ml-2">
-                        HD/4K
-                      </Badge>
-                    )}
-                  </div>
-                  <CardDescription>{pkg.channels}+ каналов</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <span className="text-5xl font-bold gradient-text">{pkg.price}</span>
-                    <span className="text-muted-foreground ml-2">₽/мес</span>
-                  </div>
-                  <ul className="space-y-2">
-                    {pkg.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2">
-                        <Icon name="Check" className="text-secondary mt-1 flex-shrink-0" size={18} />
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Button className="w-full" variant={pkg.premium ? 'default' : 'outline'}>
-                    Подключить пакет
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="promotions" className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Акции и спецпредложения</h2>
-            <p className="text-xl text-muted-foreground">Выгодные предложения для вас</p>
-          </div>
-
-          <div className="flex justify-center gap-4 mb-8 flex-wrap">
-            <Button
-              variant={selectedCategory === 'all' ? 'default' : 'outline'}
-              onClick={() => setSelectedCategory('all')}
-            >
-              Все акции
-            </Button>
-            <Button
-              variant={selectedCategory === 'internet' ? 'default' : 'outline'}
-              onClick={() => setSelectedCategory('internet')}
-            >
-              Интернет
-            </Button>
-            <Button
-              variant={selectedCategory === 'tv' ? 'default' : 'outline'}
-              onClick={() => setSelectedCategory('tv')}
-            >
-              ТВ
-            </Button>
-            <Button
-              variant={selectedCategory === 'combo' ? 'default' : 'outline'}
-              onClick={() => setSelectedCategory('combo')}
-            >
-              Комбо
-            </Button>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPromotions.map((promo, index) => (
-              <Card key={promo.title} className="card-3d animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-xl">{promo.title}</CardTitle>
-                    <Badge className="bg-destructive text-white shrink-0">{promo.discount}</Badge>
-                  </div>
-                  <CardDescription>{promo.description}</CardDescription>
-                </CardHeader>
-                <CardFooter className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">До {promo.validUntil}</span>
-                  <Button size="sm">Подробнее</Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PromotionsSection
+        promotions={promotions}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+      />
 
       <section id="contacts" className="py-20 px-4">
         <div className="container mx-auto">
