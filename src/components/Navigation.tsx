@@ -46,20 +46,21 @@ const Navigation = ({ onConnectClick }: NavigationProps) => {
             <a href="#contacts" className="text-foreground/80 hover:text-primary transition-colors">
               Контакты
             </a>
-            <a
-              href="http://stat.vikomtel.ru"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground/80 hover:text-primary transition-colors"
+            <Button
+              asChild
+              className="glow-effect"
             >
-              Личный кабинет
-            </a>
+              <a
+                href="http://stat.vikomtel.ru"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Личный кабинет
+              </a>
+            </Button>
           </div>
 
           <div className="flex items-center gap-4">
-            <Button onClick={onConnectClick} className="glow-effect hidden md:flex">
-              Подключить
-            </Button>
 
             <Button
               variant="ghost"
@@ -108,17 +109,18 @@ const Navigation = ({ onConnectClick }: NavigationProps) => {
               >
                 Контакты
               </a>
-              <a
-                href="http://stat.vikomtel.ru"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleLinkClick}
-                className="block text-foreground/80 hover:text-primary transition-colors py-2"
+              <Button
+                asChild
+                className="w-full glow-effect mt-4"
               >
-                Личный кабинет
-              </a>
-              <Button onClick={handleConnectClick} className="w-full glow-effect mt-4">
-                Подключить
+                <a
+                  href="http://stat.vikomtel.ru"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleLinkClick}
+                >
+                  Личный кабинет
+                </a>
               </Button>
             </div>
           </div>
