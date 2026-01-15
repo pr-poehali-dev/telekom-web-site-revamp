@@ -62,25 +62,25 @@ const Navigation = ({ onConnectClick }: NavigationProps) => {
           <div className="hidden md:flex items-center gap-8">
             <a 
               href="#tariffs" 
-              className={`transition-colors ${activeSection === 'tariffs' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+              className={`nav-link pb-1 ${activeSection === 'tariffs' ? 'active text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
             >
               Тарифы
             </a>
             <a 
               href="#tv" 
-              className={`transition-colors ${activeSection === 'tv' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+              className={`nav-link pb-1 ${activeSection === 'tv' ? 'active text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
             >
               Телевидение
             </a>
             <a 
               href="#services" 
-              className={`transition-colors ${activeSection === 'services' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+              className={`nav-link pb-1 ${activeSection === 'services' ? 'active text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
             >
               Сервисы
             </a>
             <a 
               href="#contacts" 
-              className={`transition-colors ${activeSection === 'contacts' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+              className={`nav-link pb-1 ${activeSection === 'contacts' ? 'active text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
             >
               Контакты
             </a>
@@ -122,28 +122,28 @@ const Navigation = ({ onConnectClick }: NavigationProps) => {
               <a
                 href="#tariffs"
                 onClick={handleLinkClick}
-                className={`block transition-colors py-2 ${activeSection === 'tariffs' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+                className={`block nav-link py-2 ${activeSection === 'tariffs' ? 'active text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
               >
                 Тарифы
               </a>
               <a
                 href="#tv"
                 onClick={handleLinkClick}
-                className={`block transition-colors py-2 ${activeSection === 'tv' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+                className={`block nav-link py-2 ${activeSection === 'tv' ? 'active text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
               >
                 Телевидение
               </a>
               <a
                 href="#services"
                 onClick={handleLinkClick}
-                className={`block transition-colors py-2 ${activeSection === 'services' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+                className={`block nav-link py-2 ${activeSection === 'services' ? 'active text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
               >
                 Сервисы
               </a>
               <a
                 href="#contacts"
                 onClick={handleLinkClick}
-                className={`block transition-colors py-2 ${activeSection === 'contacts' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+                className={`block nav-link py-2 ${activeSection === 'contacts' ? 'active text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
               >
                 Контакты
               </a>

@@ -110,4 +110,17 @@
         drop-shadow(0 0 60px rgba(186, 85, 211, 0.4));
     }
   }
+
+  .nav-link {
+    @apply relative transition-colors;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link.active::after {
+    @apply w-full;
+  }
 }
