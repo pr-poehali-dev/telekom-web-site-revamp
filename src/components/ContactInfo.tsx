@@ -31,8 +31,8 @@ const ContactInfo = () => {
           </div>
           <div>
             <div className="font-semibold">Email</div>
-            <a href="mailto:info@vikom-net.ru" className="text-primary hover:underline">
-              info@vikom-net.ru
+            <a href="mailto:office@vikomtel.ru" className="text-primary hover:underline">
+              office@vikomtel.ru
             </a>
           </div>
         </div>

@@ -51,8 +51,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Icon name="Mail" size={16} />
-                <a href="mailto:info@vikom-net.ru" className="hover:text-primary transition-colors">
-                  info@vikom-net.ru
+                <a href="mailto:office@vikomtel.ru" className="hover:text-primary transition-colors">
+                  office@vikomtel.ru
                 </a>
               </li>
               <li className="flex items-center gap-2">
