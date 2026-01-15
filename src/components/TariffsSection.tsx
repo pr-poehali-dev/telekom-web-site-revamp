@@ -12,6 +12,7 @@ interface Tariff {
   type: 'internet' | 'combo';
   tvPackage?: string;
   tvChannels?: number;
+  image?: string;
 }
 
 interface TVPackage {
@@ -43,15 +44,24 @@ const TariffsSection = ({ tariffs, tvPackages }: TariffsSectionProps) => {
             {tariffs.map((tariff, index) => (
               <Card
                 key={tariff.name}
-                className={`relative card-3d animate-slide-up ${
+                className={`relative card-3d animate-slide-up transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                   tariff.popular ? 'border-primary glow-effect' : ''
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {tariff.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-background">
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-background z-10">
                     Популярный
                   </Badge>
+                )}
+                {tariff.image && (
+                  <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
+                    <img 
+                      src={tariff.image} 
+                      alt={tariff.name}
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    />
+                  </div>
                 )}
                 <CardHeader>
                   <CardTitle className="text-2xl">{tariff.name}</CardTitle>
