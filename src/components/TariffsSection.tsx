@@ -21,6 +21,7 @@ interface TVPackage {
   features: string[];
   hd: boolean;
   premium?: boolean;
+  image?: string;
 }
 
 interface TariffsSectionProps {
@@ -101,6 +102,15 @@ const TariffsSection = ({ tariffs, tvPackages }: TariffsSectionProps) => {
                 className={`card-3d animate-slide-up ${pkg.premium ? 'border-secondary glow-effect' : ''}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {pkg.image && (
+                  <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
+                    <img 
+                      src={pkg.image} 
+                      alt={pkg.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-xl">{pkg.name}</CardTitle>

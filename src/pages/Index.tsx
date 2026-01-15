@@ -27,6 +27,7 @@ interface TVPackage {
   features: string[];
   hd: boolean;
   premium?: boolean;
+  image?: string;
 }
 
 interface Service {
@@ -109,6 +110,7 @@ const Index = () => {
       hd: true,
       features: ['420+ каналов', 'Все кино и сериалы', 'HD качество', 'Пауза и перемотка', 'Архив 7 дней'],
       premium: true,
+      image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/c5aaa5ab-ddf6-4281-a8a9-9639a45421b1.jpg',
     },
     {
       name: 'Всё включено',
@@ -125,6 +127,7 @@ const Index = () => {
         'Архив 14 дней',
       ],
       premium: true,
+      image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/c5aaa5ab-ddf6-4281-a8a9-9639a45421b1.jpg',
     },
     {
       name: 'НАСТРОЙ КИНО!',
@@ -137,6 +140,7 @@ const Index = () => {
         'Классика кинематографа',
         'HD качество',
       ],
+      image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ee52f4df-27ee-4d04-9c8b-6ecf62ba5f8c.jpg',
     },
     {
       name: 'МАТЧ! ФУТБОЛ',
@@ -149,6 +153,7 @@ const Index = () => {
         'Прямые эфиры матчей',
         'Аналитические программы',
       ],
+      image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/2fc25c2a-00d1-4afe-affa-68e3ce931b91.jpg',
     },
     {
       name: 'МАТЧ ПРЕМЬЕР',
@@ -161,6 +166,7 @@ const Index = () => {
         'Повторы эфира Матч ТВ',
         'Эксклюзивный контент',
       ],
+      image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/2fc25c2a-00d1-4afe-affa-68e3ce931b91.jpg',
     },
     {
       name: 'Много кино',
@@ -174,6 +180,7 @@ const Index = () => {
         'Тематические киноподборки',
         'Семейное кино',
       ],
+      image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ee52f4df-27ee-4d04-9c8b-6ecf62ba5f8c.jpg',
     },
     {
       name: 'Кинотеатр START',
@@ -186,6 +193,7 @@ const Index = () => {
         'Премьеры комедий до эфира на ТВ',
         'Эксклюзивный контент',
       ],
+      image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ee52f4df-27ee-4d04-9c8b-6ecf62ba5f8c.jpg',
     },
     {
       name: 'Кинотеатр AMEDIATEKA',
@@ -198,6 +206,7 @@ const Index = () => {
         'Оригинальные проекты',
         'Субтитры и дубляж',
       ],
+      image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ee52f4df-27ee-4d04-9c8b-6ecf62ba5f8c.jpg',
     },
   ];
 
