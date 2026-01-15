@@ -139,7 +139,7 @@ export const tvPackages: TVPackage[] = [
       'Тематические киноподборки',
       'Семейное кино',
     ],
-    image: 'https://cdn.poehali.dev/files/Много кино.png',
+    image: 'https://cdn.poehali.dev/files/Много кино new.png',
   },
   {
     name: 'Кинотеатр START',
