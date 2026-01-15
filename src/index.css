@@ -82,4 +82,32 @@
       0 0 20px rgba(255, 215, 0, 0.3),
       0 0 40px rgba(255, 215, 0, 0.1);
   }
+
+  .animate-logo-float {
+    animation: logoFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes logoFloat {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-20px) scale(1.05);
+    }
+  }
+
+  .animate-logo-glow {
+    animation: logoGlow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes logoGlow {
+    0% {
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+    }
+    100% {
+      filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.6))
+        drop-shadow(0 0 60px rgba(186, 85, 211, 0.4));
+    }
+  }
 }

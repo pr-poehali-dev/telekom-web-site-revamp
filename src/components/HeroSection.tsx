@@ -47,11 +47,11 @@ const HeroSection = ({ onConnectClick }: HeroSectionProps) => {
             </div>
           </div>
           <div className="relative animate-scale-in flex items-center justify-center">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 blur-3xl rounded-full"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 blur-3xl rounded-full animate-pulse"></div>
             <img 
               src="https://cdn.poehali.dev/files/Дельфин копия1.png" 
               alt="Виком - Высокоскоростной интернет" 
-              className="relative w-full max-w-lg h-auto object-contain drop-shadow-2xl"
+              className="relative w-full max-w-lg h-auto object-contain animate-logo-float animate-logo-glow"
             />
           </div>
         </div>
