@@ -31,6 +31,10 @@ interface TariffsSectionProps {
 }
 
 const TariffsSection = ({ tariffs, tvPackages }: TariffsSectionProps) => {
+  const scrollToContacts = () => {
+    document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
       <section id="tariffs" className="py-20 px-4 bg-muted/30">
@@ -88,7 +92,11 @@ const TariffsSection = ({ tariffs, tvPackages }: TariffsSectionProps) => {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full" variant={tariff.popular ? 'default' : 'outline'}>
+                  <Button 
+                    className="w-full" 
+                    variant={tariff.popular ? 'default' : 'outline'}
+                    onClick={scrollToContacts}
+                  >
                     Выбрать тариф
                   </Button>
                 </CardFooter>
