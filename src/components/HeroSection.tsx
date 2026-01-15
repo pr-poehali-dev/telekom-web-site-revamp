@@ -12,13 +12,6 @@ const HeroSection = ({ onConnectClick }: HeroSectionProps) => {
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
-            <div className="flex items-center gap-4 mb-6">
-              <img 
-                src="https://cdn.poehali.dev/files/Дельфин копия1.png" 
-                alt="Виком Логотип" 
-                className="h-32 w-auto object-contain"
-              />
-            </div>
             <Badge className="bg-primary/20 text-primary border-primary">Лучший выбор 2026</Badge>
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
               Высокая скорость.
