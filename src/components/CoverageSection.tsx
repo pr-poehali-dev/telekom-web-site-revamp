@@ -2,10 +2,10 @@ import Icon from '@/components/ui/icon';
 
 const CoverageSection = () => {
   const locations = [
-    's.Beya',
-    's.Sabinka',
-    's.Kirba',
-    's.Askiz'
+    'с. Бея',
+    'с. Сабинка',
+    'с. Кирба',
+    'с. Аскиз'
   ];
 
   return (
