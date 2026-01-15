@@ -6,6 +6,7 @@ interface Service {
   description: string;
   icon: string;
   features: string[];
+  image?: string;
 }
 
 interface ServicesSectionProps {
@@ -25,9 +26,18 @@ const ServicesSection = ({ services }: ServicesSectionProps) => {
           {services.map((service, index) => (
             <Card 
               key={service.title} 
-              className="card-3d animate-slide-up hover:border-primary/50 transition-colors" 
+              className="card-3d animate-slide-up hover:border-primary/50 transition-all duration-300 hover:scale-105 overflow-hidden" 
               style={{ animationDelay: `${index * 0.1}s` }}
             >
+              {service.image && (
+                <div className="relative w-full h-48 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                </div>
+              )}
               <CardHeader>
                 <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-4">
                   <Icon name={service.icon} className="text-primary" size={32} />

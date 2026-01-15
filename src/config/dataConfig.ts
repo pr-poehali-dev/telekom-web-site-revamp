@@ -25,6 +25,7 @@ export interface Service {
   description: string;
   icon: string;
   features: string[];
+  image?: string;
 }
 
 export const tariffs: Tariff[] = [
@@ -180,6 +181,7 @@ export const services: Service[] = [
       'Настройка оборудования',
       'Удаленная диагностика'
     ],
+    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/462a859a-be05-4597-a293-0f8aa748c4b2.jpg',
   },
   {
     title: 'Настройка оборудования',
@@ -191,6 +193,7 @@ export const services: Service[] = [
       'Подключение ТВ-приставок',
       'Оптимизация сигнала'
     ],
+    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/49c12df7-2c55-4a83-9626-0f22a40cbddd.jpg',
   },
   {
     title: 'Личный кабинет',
@@ -202,6 +205,7 @@ export const services: Service[] = [
       'История платежей',
       'Статистика использования'
     ],
+    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/d1655b5a-e05b-459c-9c2a-817ea787bd55.jpg',
   },
   {
     title: 'Видеонаблюдение',
@@ -213,17 +217,19 @@ export const services: Service[] = [
       'Просмотр с телефона',
       'Архив записей до 30 дней'
     ],
+    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ccbe3c47-dfe7-4fe0-8fb6-534f7e3fa2cd.jpg',
   },
   {
-    title: 'Защита от киберугроз',
-    description: 'Безопасность в интернете',
-    icon: 'Shield',
+    title: 'Обещанный платёж',
+    description: 'Продление услуг при нулевом балансе',
+    icon: 'CreditCard',
     features: [
-      'Антивирусная защита',
-      'Родительский контроль',
-      'Блокировка рекламы',
-      'Безопасный DNS'
+      'Продление действия уже подключённых услуг при нулевом балансе',
+      'Задолженность должна быть погашена в течение следующих 3 дней',
+      'Активация через личный кабинет',
+      'Доступно для всех тарифов'
     ],
+    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/5abd0824-bfd3-4d32-8db0-1fa7e90b72fc.jpg',
   },
   {
     title: 'Подключение организаций',
@@ -235,5 +241,6 @@ export const services: Service[] = [
       'VPN для сотрудников',
       'Приоритетная поддержка'
     ],
+    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/a6bad533-88b5-45fa-a7c8-a02216af2680.jpg',
   },
 ];
