@@ -112,7 +112,7 @@ export const tvPackages: TVPackage[] = [
       'Прямые эфиры матчей',
       'Аналитические программы',
     ],
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/2fc25c2a-00d1-4afe-affa-68e3ce931b91.jpg',
+    image: 'https://cdn.poehali.dev/files/Футбол.jpeg',
   },
   {
     name: 'МАТЧ ПРЕМЬЕР',
@@ -125,7 +125,7 @@ export const tvPackages: TVPackage[] = [
       'Повторы эфира Матч ТВ',
       'Эксклюзивный контент',
     ],
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/2fc25c2a-00d1-4afe-affa-68e3ce931b91.jpg',
+    image: 'https://cdn.poehali.dev/files/Матч примьер.jpg',
   },
   {
     name: 'Много кино',
