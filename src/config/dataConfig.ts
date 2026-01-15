@@ -99,7 +99,7 @@ export const tvPackages: TVPackage[] = [
       'Классика кинематографа',
       'HD качество',
     ],
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ee52f4df-27ee-4d04-9c8b-6ecf62ba5f8c.jpg',
+    image: 'https://cdn.poehali.dev/files/настрой кино.png',
   },
   {
     name: 'МАТЧ! ФУТБОЛ',
@@ -139,7 +139,7 @@ export const tvPackages: TVPackage[] = [
       'Тематические киноподборки',
       'Семейное кино',
     ],
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ee52f4df-27ee-4d04-9c8b-6ecf62ba5f8c.jpg',
+    image: 'https://cdn.poehali.dev/files/Много кино.png',
   },
   {
     name: 'Кинотеатр START',
@@ -152,7 +152,7 @@ export const tvPackages: TVPackage[] = [
       'Премьеры комедий до эфира на ТВ',
       'Эксклюзивный контент',
     ],
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ee52f4df-27ee-4d04-9c8b-6ecf62ba5f8c.jpg',
+    image: 'https://cdn.poehali.dev/files/START.png',
   },
   {
     name: 'Кинотеатр AMEDIATEKA',
@@ -165,7 +165,7 @@ export const tvPackages: TVPackage[] = [
       'Оригинальные проекты',
       'Субтитры и дубляж',
     ],
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/ee52f4df-27ee-4d04-9c8b-6ecf62ba5f8c.jpg',
+    image: 'https://cdn.poehali.dev/files/Амедиатека.png',
   },
 ];
 
