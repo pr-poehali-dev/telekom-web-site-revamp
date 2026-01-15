@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 
@@ -8,6 +8,32 @@ interface NavigationProps {
 
 const Navigation = ({ onConnectClick }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['tariffs', 'tv', 'services', 'contacts'];
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -34,16 +60,28 @@ const Navigation = ({ onConnectClick }: NavigationProps) => {
           </div>
 
           <div className="hidden md:flex items-center gap-8">
-            <a href="#tariffs" className="text-foreground/80 hover:text-primary transition-colors">
+            <a 
+              href="#tariffs" 
+              className={`transition-colors ${activeSection === 'tariffs' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+            >
               Тарифы
             </a>
-            <a href="#tv" className="text-foreground/80 hover:text-primary transition-colors">
+            <a 
+              href="#tv" 
+              className={`transition-colors ${activeSection === 'tv' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+            >
               Телевидение
             </a>
-            <a href="#services" className="text-foreground/80 hover:text-primary transition-colors">
+            <a 
+              href="#services" 
+              className={`transition-colors ${activeSection === 'services' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+            >
               Сервисы
             </a>
-            <a href="#contacts" className="text-foreground/80 hover:text-primary transition-colors">
+            <a 
+              href="#contacts" 
+              className={`transition-colors ${activeSection === 'contacts' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
+            >
               Контакты
             </a>
             <Button
@@ -84,28 +122,28 @@ const Navigation = ({ onConnectClick }: NavigationProps) => {
               <a
                 href="#tariffs"
                 onClick={handleLinkClick}
-                className="block text-foreground/80 hover:text-primary transition-colors py-2"
+                className={`block transition-colors py-2 ${activeSection === 'tariffs' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
               >
                 Тарифы
               </a>
               <a
                 href="#tv"
                 onClick={handleLinkClick}
-                className="block text-foreground/80 hover:text-primary transition-colors py-2"
+                className={`block transition-colors py-2 ${activeSection === 'tv' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
               >
                 Телевидение
               </a>
               <a
                 href="#services"
                 onClick={handleLinkClick}
-                className="block text-foreground/80 hover:text-primary transition-colors py-2"
+                className={`block transition-colors py-2 ${activeSection === 'services' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
               >
                 Сервисы
               </a>
               <a
                 href="#contacts"
                 onClick={handleLinkClick}
-                className="block text-foreground/80 hover:text-primary transition-colors py-2"
+                className={`block transition-colors py-2 ${activeSection === 'contacts' ? 'text-primary font-semibold' : 'text-foreground/80 hover:text-primary'}`}
               >
                 Контакты
               </a>
