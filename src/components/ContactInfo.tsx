@@ -44,7 +44,7 @@ const ContactInfo = () => {
           <div>
             <div className="font-semibold">Адрес</div>
             <p className="text-muted-foreground">
-              п. Тура, ул. Калинина, д. 42
+              655770, Республика Хакасия Бейский район, с. Бея, ул.Горького,1Б
             </p>
           </div>
         </div>
@@ -61,14 +61,10 @@ const ContactInfo = () => {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span>Понедельник - Пятница:</span>
-                  <span className="font-semibold text-foreground">9:00 - 18:00</span>
+                  <span className="font-semibold text-foreground">8:00 - 17:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Суббота:</span>
-                  <span className="font-semibold text-foreground">10:00 - 15:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Воскресенье:</span>
+                  <span>Суббота - Воскресенье:</span>
                   <span className="font-semibold text-foreground">Выходной</span>
                 </div>
               </div>

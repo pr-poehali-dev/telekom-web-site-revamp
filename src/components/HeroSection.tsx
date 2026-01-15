@@ -4,9 +4,13 @@ import Icon from '@/components/ui/icon';
 
 interface HeroSectionProps {
   onConnectClick: () => void;
+  onLearnMoreClick?: () => void;
 }
 
-const HeroSection = ({ onConnectClick }: HeroSectionProps) => {
+const HeroSection = ({ onConnectClick, onLearnMoreClick }: HeroSectionProps) => {
+  const scrollToContacts = () => {
+    document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <section className="pt-32 pb-20 px-4">
       <div className="container mx-auto">
@@ -26,7 +30,7 @@ const HeroSection = ({ onConnectClick }: HeroSectionProps) => {
                 <Icon name="Zap" className="mr-2" size={20} />
                 Выбрать тариф
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" onClick={onLearnMoreClick || scrollToContacts}>
                 <Icon name="PhoneCall" className="mr-2" size={20} />
                 Узнать подробнее
               </Button>
