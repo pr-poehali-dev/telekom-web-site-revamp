@@ -12,10 +12,10 @@ const CoverageSection = () => {
     <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Зона покрытия
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-white/90 text-lg">
             Наши услуги доступны в следующих населённых пунктах
           </p>
         </div>
@@ -33,7 +33,7 @@ const CoverageSection = () => {
                   <Icon name="MapPin" className="text-primary" size={32} />
                 </div>
                 
-                <h3 className="font-semibold text-lg text-foreground">
+                <h3 className="font-semibold text-lg text-white">
                   {location}
                 </h3>
               </div>
@@ -42,9 +42,9 @@ const CoverageSection = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-muted-foreground">
+          <p className="text-white/90">
             Не нашли свой населённый пункт?{' '}
-            <a href="#contacts" className="text-primary hover:underline font-semibold">
+            <a href="#contacts" className="text-white hover:underline font-semibold">
               Свяжитесь с нами
             </a>
             {' '}для уточнения возможности подключения
