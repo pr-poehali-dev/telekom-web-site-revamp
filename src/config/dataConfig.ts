@@ -36,7 +36,7 @@ export const tariffs: Tariff[] = [
     tvPackage: 'Лайт+',
     tvChannels: 270,
     features: ['Интернет 100 Мбит/с', 'Пакет Лайт+', 'ТВ 270+ каналов', 'Технология FTTH', 'Только для многоквартирных домов', 'Подключение 2-3 дня'],
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/b13386df-8df3-4d2a-a2df-0061288b3cc7.jpg',
+    image: 'https://cdn.poehali.dev/files/Поезд.jpg',
   },
   {
     name: 'Комбо 200',
@@ -47,7 +47,7 @@ export const tariffs: Tariff[] = [
     tvChannels: 270,
     features: ['Интернет 200 Мбит/с', 'Пакет Лайт+', 'ТВ 270+ каналов', 'Технология GPON', 'Подключение 2-3 дня'],
     popular: true,
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/98447bc9-feec-481c-8e73-916fe25824b9.jpg',
+    image: 'https://cdn.poehali.dev/files/Самолет.jpg',
   },
   {
     name: 'Комбо 200+',
@@ -57,7 +57,7 @@ export const tariffs: Tariff[] = [
     tvPackage: 'Оптимум+',
     tvChannels: 400,
     features: ['Интернет 200 Мбит/с', 'Пакет Оптимум+', 'ТВ 400+ каналов', 'HD качество', 'Архив передач'],
-    image: 'https://cdn.poehali.dev/projects/f6041f0d-fd3f-4598-bbd4-c8c4e40663cb/files/4cc2f265-0f86-455d-9941-171a97aeb82c.jpg',
+    image: 'https://cdn.poehali.dev/files/Ракета.jpg',
   },
 ];
 
