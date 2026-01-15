@@ -53,33 +53,13 @@ const HeroSection = ({ onConnectClick }: HeroSectionProps) => {
               </div>
             </div>
           </div>
-          <div className="relative animate-scale-in">
+          <div className="relative animate-scale-in flex items-center justify-center">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 blur-3xl rounded-full"></div>
-            <div className="relative bg-card/50 backdrop-blur-sm border border-border rounded-3xl p-8 card-3d">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 p-4 bg-primary/10 rounded-xl">
-                  <Icon name="Rocket" className="text-primary" size={32} />
-                  <div>
-                    <div className="font-semibold">Быстрое подключение</div>
-                    <div className="text-sm text-muted-foreground">Всего 2-3 рабочих дня</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 bg-secondary/10 rounded-xl">
-                  <Icon name="Shield" className="text-secondary" size={32} />
-                  <div>
-                    <div className="font-semibold">Надежная защита</div>
-                    <div className="text-sm text-muted-foreground">Технология GPON</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 bg-primary/10 rounded-xl">
-                  <Icon name="Headphones" className="text-primary" size={32} />
-                  <div>
-                    <div className="font-semibold">Поддержка 24/7</div>
-                    <div className="text-sm text-muted-foreground">Всегда на связи</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img 
+              src="https://cdn.poehali.dev/files/Дельфин копия1.png" 
+              alt="Виком - Высокоскоростной интернет" 
+              className="relative w-full max-w-lg h-auto object-contain drop-shadow-2xl"
+            />
           </div>
         </div>
       </div>
