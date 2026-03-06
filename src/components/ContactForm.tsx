@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -26,7 +26,7 @@ const ContactForm = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({ name: '', phone: '', email: '', message: '' });
+        setFormData({ name: '', phone: '', message: '' });
       } else {
         setSubmitStatus('error');
       }
@@ -56,16 +56,6 @@ const ContactForm = () => {
             placeholder="Телефон" 
             name="phone"
             value={formData.phone}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <Input 
-            type="email" 
-            placeholder="Email" 
-            name="email"
-            value={formData.email}
             onChange={handleInputChange}
             required
           />
