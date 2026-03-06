@@ -55,6 +55,8 @@ const Index = () => {
           tvPackages={tvPackages}
         />
 
+        <SpeedTestSection />
+
         <ServicesSection services={services} />
 
         <section id="contacts" className="py-20 px-4">
@@ -65,8 +67,6 @@ const Index = () => {
             </div>
           </div>
         </section>
-
-        <SpeedTestSection />
 
         <CoverageSection />
 
