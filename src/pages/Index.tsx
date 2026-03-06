@@ -6,6 +6,7 @@ import ServicesSection from '@/components/ServicesSection';
 import ContactForm from '@/components/ContactForm';
 import ContactInfo from '@/components/ContactInfo';
 import CoverageSection from '@/components/CoverageSection';
+import SpeedTestSection from '@/components/SpeedTestSection';
 import Footer from '@/components/Footer';
 import { tariffs, tvPackages, services } from '@/config/dataConfig';
 
@@ -64,6 +65,8 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        <SpeedTestSection />
 
         <CoverageSection />
 
