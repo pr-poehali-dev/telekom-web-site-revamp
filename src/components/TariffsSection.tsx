@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import SpeedTestSection from '@/components/SpeedTestSection';
 
 interface Tariff {
   name: string;
@@ -105,6 +106,8 @@ const TariffsSection = ({ tariffs, tvPackages }: TariffsSectionProps) => {
           </div>
         </div>
       </section>
+
+      <SpeedTestSection />
 
       <section id="tv" className="py-20 px-4">
         <div className="container mx-auto">
