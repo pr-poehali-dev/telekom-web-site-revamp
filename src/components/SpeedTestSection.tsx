@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
-type TestState = 'idle' | 'testing-ping' | 'testing-download' | 'testing-upload' | 'done';
+type TestState = 'idle' | 'testing-ping' | 'testing-download' | 'testing-upload' | 'done' | 'error';
 
 interface SpeedResult {
   ping: number | null;
@@ -11,104 +11,150 @@ interface SpeedResult {
   upload: number | null;
 }
 
+const DOWNLOAD_URL = 'https://speed.cloudflare.com/__down?bytes=';
+const UPLOAD_URL = 'https://speed.cloudflare.com/__up';
+
 const SpeedTestSection = () => {
   const [state, setState] = useState<TestState>('idle');
   const [result, setResult] = useState<SpeedResult>({ ping: null, download: null, upload: null });
-  const [progress, setProgress] = useState(0);
-  const abortRef = useRef<AbortController | null>(null);
+  const [liveSpeed, setLiveSpeed] = useState<number | null>(null);
+  const stopped = useRef(false);
 
-  const measurePing = async (): Promise<number> => {
-    const times: number[] = [];
-    for (let i = 0; i < 5; i++) {
-      const start = performance.now();
-      await fetch(`https://www.cloudflare.com/cdn-cgi/trace?_=${Date.now() + i}`, { mode: 'no-cors', cache: 'no-store' });
-      times.push(performance.now() - start);
-    }
-    times.sort((a, b) => a - b);
-    return Math.round(times[1]);
+  const measurePing = (): Promise<number> => {
+    return new Promise((resolve, reject) => {
+      const times: number[] = [];
+      let count = 0;
+      const next = () => {
+        if (stopped.current) return reject(new Error('stopped'));
+        const xhr = new XMLHttpRequest();
+        const start = performance.now();
+        xhr.open('GET', `${DOWNLOAD_URL}1&_=${Date.now()}`, true);
+        xhr.onload = () => {
+          times.push(performance.now() - start);
+          count++;
+          if (count < 5) next();
+          else {
+            times.sort((a, b) => a - b);
+            resolve(Math.round(times[1]));
+          }
+        };
+        xhr.onerror = () => reject(new Error('ping failed'));
+        xhr.send();
+      };
+      next();
+    });
   };
 
-  const measureDownload = async (signal: AbortSignal): Promise<number> => {
-    const sizes = [1, 2, 5, 10];
-    let totalBits = 0;
-    let totalTime = 0;
+  const measureDownload = (): Promise<number> => {
+    return new Promise((resolve, reject) => {
+      const bytes = 25 * 1024 * 1024;
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `${DOWNLOAD_URL}${bytes}&_=${Date.now()}`, true);
+      xhr.responseType = 'arraybuffer';
 
-    for (let i = 0; i < sizes.length; i++) {
-      const url = `https://speed.cloudflare.com/__down?bytes=${sizes[i] * 1024 * 1024}&_=${Date.now()}`;
+      let lastLoaded = 0;
+      let lastTime = performance.now();
       const start = performance.now();
-      const res = await fetch(url, { signal, cache: 'no-store' });
-      const blob = await res.blob();
-      const elapsed = (performance.now() - start) / 1000;
-      totalBits += blob.size * 8;
-      totalTime += elapsed;
-      setProgress(25 + Math.round((i + 1) / sizes.length * 35));
-    }
 
-    return Math.round((totalBits / totalTime) / 1_000_000);
+      xhr.onprogress = (e) => {
+        if (stopped.current) { xhr.abort(); return; }
+        const now = performance.now();
+        const dt = (now - lastTime) / 1000;
+        if (dt > 0.2) {
+          const speedMbps = ((e.loaded - lastLoaded) * 8) / dt / 1_000_000;
+          setLiveSpeed(Math.round(speedMbps));
+          lastLoaded = e.loaded;
+          lastTime = now;
+        }
+      };
+
+      xhr.onload = () => {
+        const elapsed = (performance.now() - start) / 1000;
+        const mbps = (bytes * 8) / elapsed / 1_000_000;
+        resolve(Math.round(mbps));
+      };
+
+      xhr.onerror = () => reject(new Error('download failed'));
+      xhr.onabort = () => reject(new Error('stopped'));
+      xhr.send();
+    });
   };
 
-  const measureUpload = async (signal: AbortSignal): Promise<number> => {
-    const sizes = [1, 2, 5];
-    let totalBits = 0;
-    let totalTime = 0;
+  const measureUpload = (): Promise<number> => {
+    return new Promise((resolve, reject) => {
+      const bytes = 10 * 1024 * 1024;
+      const data = new Uint8Array(bytes).fill(0x61);
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', `${UPLOAD_URL}?_=${Date.now()}`, true);
 
-    for (let i = 0; i < sizes.length; i++) {
-      const data = new Uint8Array(sizes[i] * 1024 * 1024).fill(0x61);
+      let lastLoaded = 0;
+      let lastTime = performance.now();
       const start = performance.now();
-      await fetch(`https://speed.cloudflare.com/__up?_=${Date.now()}`, {
-        method: 'POST',
-        body: data,
-        signal,
-        cache: 'no-store',
-      });
-      const elapsed = (performance.now() - start) / 1000;
-      totalBits += data.byteLength * 8;
-      totalTime += elapsed;
-      setProgress(60 + Math.round((i + 1) / sizes.length * 35));
-    }
 
-    return Math.round((totalBits / totalTime) / 1_000_000);
+      xhr.upload.onprogress = (e) => {
+        if (stopped.current) { xhr.abort(); return; }
+        const now = performance.now();
+        const dt = (now - lastTime) / 1000;
+        if (dt > 0.2) {
+          const speedMbps = ((e.loaded - lastLoaded) * 8) / dt / 1_000_000;
+          setLiveSpeed(Math.round(speedMbps));
+          lastLoaded = e.loaded;
+          lastTime = now;
+        }
+      };
+
+      xhr.onload = () => {
+        const elapsed = (performance.now() - start) / 1000;
+        const mbps = (bytes * 8) / elapsed / 1_000_000;
+        resolve(Math.round(mbps));
+      };
+
+      xhr.onerror = () => reject(new Error('upload failed'));
+      xhr.onabort = () => reject(new Error('stopped'));
+      xhr.send(data);
+    });
   };
 
   const runTest = async () => {
-    const abort = new AbortController();
-    abortRef.current = abort;
+    stopped.current = false;
     setResult({ ping: null, download: null, upload: null });
-    setProgress(0);
+    setLiveSpeed(null);
 
     try {
       setState('testing-ping');
-      setProgress(5);
       const ping = await measurePing();
+      if (stopped.current) return;
       setResult(r => ({ ...r, ping }));
-      setProgress(20);
 
       setState('testing-download');
-      const download = await measureDownload(abort.signal);
+      setLiveSpeed(null);
+      const download = await measureDownload();
+      if (stopped.current) return;
       setResult(r => ({ ...r, download }));
+      setLiveSpeed(null);
 
       setState('testing-upload');
-      setProgress(60);
-      const upload = await measureUpload(abort.signal);
+      const upload = await measureUpload();
+      if (stopped.current) return;
       setResult(r => ({ ...r, upload }));
+      setLiveSpeed(null);
 
-      setProgress(100);
       setState('done');
     } catch (e) {
-      if ((e as Error).name !== 'AbortError') {
-        setState('done');
+      if ((e as Error).message !== 'stopped') {
+        setState('error');
       }
     }
   };
 
   const reset = () => {
-    abortRef.current?.abort();
+    stopped.current = true;
     setState('idle');
     setResult({ ping: null, download: null, upload: null });
-    setProgress(0);
+    setLiveSpeed(null);
   };
 
-  const isTesting = state !== 'idle' && state !== 'done';
+  const isTesting = state === 'testing-ping' || state === 'testing-download' || state === 'testing-upload';
 
   const getLabel = () => {
     if (state === 'testing-ping') return 'Измеряем задержку...';
@@ -143,10 +189,9 @@ const SpeedTestSection = () => {
         <div className="max-w-2xl mx-auto">
           <Card className="card-3d overflow-hidden">
             <CardContent className="p-8">
-              {/* Метрики */}
               <div className="grid grid-cols-3 gap-4 mb-8">
                 <div className="text-center">
-                  <div className={`text-3xl md:text-4xl font-bold mb-1 ${getPingColor(result.ping)}`}>
+                  <div className={`text-3xl md:text-4xl font-bold mb-1 transition-all duration-300 ${getPingColor(result.ping)}`}>
                     {result.ping !== null ? result.ping : '—'}
                   </div>
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">мс</div>
@@ -157,8 +202,12 @@ const SpeedTestSection = () => {
                 </div>
 
                 <div className="text-center">
-                  <div className={`text-3xl md:text-4xl font-bold mb-1 ${getSpeedColor(result.download, 'download')}`}>
-                    {result.download !== null ? result.download : '—'}
+                  <div className={`text-3xl md:text-4xl font-bold mb-1 transition-all duration-300 ${getSpeedColor(result.download, 'download')}`}>
+                    {state === 'testing-download' && liveSpeed !== null
+                      ? liveSpeed
+                      : result.download !== null
+                      ? result.download
+                      : '—'}
                   </div>
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">Мбит/с</div>
                   <div className="flex items-center justify-center gap-1 mt-2 text-sm text-muted-foreground">
@@ -168,8 +217,12 @@ const SpeedTestSection = () => {
                 </div>
 
                 <div className="text-center">
-                  <div className={`text-3xl md:text-4xl font-bold mb-1 ${getSpeedColor(result.upload, 'upload')}`}>
-                    {result.upload !== null ? result.upload : '—'}
+                  <div className={`text-3xl md:text-4xl font-bold mb-1 transition-all duration-300 ${getSpeedColor(result.upload, 'upload')}`}>
+                    {state === 'testing-upload' && liveSpeed !== null
+                      ? liveSpeed
+                      : result.upload !== null
+                      ? result.upload
+                      : '—'}
                   </div>
                   <div className="text-xs text-muted-foreground uppercase tracking-wider">Мбит/с</div>
                   <div className="flex items-center justify-center gap-1 mt-2 text-sm text-muted-foreground">
@@ -179,23 +232,21 @@ const SpeedTestSection = () => {
                 </div>
               </div>
 
-              {/* Прогресс-бар */}
               {isTesting && (
-                <div className="mb-6">
-                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                    <span>{getLabel()}</span>
-                    <span>{progress}%</span>
-                  </div>
-                  <div className="h-2 bg-muted rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-primary rounded-full transition-all duration-500"
-                      style={{ width: `${progress}%` }}
-                    />
+                <div className="mb-6 text-center">
+                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    {getLabel()}
                   </div>
                 </div>
               )}
 
-              {/* Кнопка */}
+              {state === 'error' && (
+                <div className="mb-6 text-center text-sm text-red-400">
+                  Не удалось выполнить тест. Проверьте подключение и попробуйте снова.
+                </div>
+              )}
+
               <div className="text-center">
                 {state === 'idle' && (
                   <Button size="lg" className="px-12 animate-glow" onClick={runTest}>
@@ -208,16 +259,22 @@ const SpeedTestSection = () => {
                     Остановить
                   </Button>
                 )}
-                {state === 'done' && (
+                {(state === 'done' || state === 'error') && (
                   <div className="space-y-4">
                     <Button size="lg" className="px-12" onClick={runTest}>
                       <Icon name="RefreshCw" size={18} className="mr-2" />
                       Повторить тест
                     </Button>
                     {result.download !== null && result.download < 50 && (
-                      <p className="text-sm text-muted-foreground">
-                        Скорость ниже оптимальной? <a href="#tariffs" className="text-primary underline underline-offset-4 cursor-pointer" onClick={e => { e.preventDefault(); document.getElementById('tariffs')?.scrollIntoView({ behavior: 'smooth' }); }}>Посмотрите наши тарифы</a>
-                      </p>
+                      <div className="text-sm text-muted-foreground">
+                        Скорость ниже оптимальной?{' '}
+                        <button
+                          className="text-primary underline underline-offset-4 cursor-pointer"
+                          onClick={() => document.getElementById('tariffs')?.scrollIntoView({ behavior: 'smooth' })}
+                        >
+                          Посмотрите наши тарифы
+                        </button>
+                      </div>
                     )}
                   </div>
                 )}
